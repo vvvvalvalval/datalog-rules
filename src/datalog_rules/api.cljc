@@ -128,8 +128,10 @@
     (str "-------------------------\n"
       (pr-str (:sig h)) "\n\n" (:doc h))))
 
+#?(:clj
 (defmacro rule-doc [rs rname]
   `(println (rule-doc-str ~rs (quote ~rname))))
+)
 
 (defn rule-source* [rs rname]
   (into []
@@ -137,6 +139,7 @@
               (= (rule-name rule) rname)))
     (rules rs)))
 
+#?(:clj
 (defmacro rule-source [rs rname]
   `(rule-source* ~rs (quote ~rname)))
-
+)
