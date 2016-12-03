@@ -160,7 +160,7 @@ You can them readily use them in query:
 Similarly to `clojure.repl/doc`, `datalog-rules.api/rule-doc` prints the documentation for a registered rule:
 
 ```clojure
-;(dr/rule-doc my-ruleset in-country)
+(dr/rule-doc my-ruleset in-country)
 ;-------------------------
 ;(in-country ?person ?country)
 ;
