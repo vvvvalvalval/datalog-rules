@@ -228,7 +228,7 @@ Most applications probably need only one ruleset.
 ## Function - Rule analogy
 
 | Functions | Rules |
----------------------
+|-----------|-------|
 |`(defn ...)` | `(unirule my-ruleset ...)`|
 |`(defmulti <name> ...)` | `(plurirule my-ruleset ...)`|
 |`(defmethod <name> ...)` | `(pluriimpl my-ruleset ...)`|
