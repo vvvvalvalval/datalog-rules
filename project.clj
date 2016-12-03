@@ -1,4 +1,4 @@
-(defproject vvvvalvalval/datalog-rules "0.1.0-SNAPSHOT"
+(defproject vvvvalvalval/datalog-rules "0.1.0"
   :description "Utilities for managing Datalog rulesets from Clojure."
   :url "https://github.com/vvvvalvalval/datalog-rules"
   :license {:name "MIT"
