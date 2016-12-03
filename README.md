@@ -31,6 +31,49 @@ in your code, in a way that is friendly to interactive development.
 
 ## Usage
 
+### TL;DR
+
+Here's a complete usage example; see below for a detailed walkthrough.
+
+```clojure
+(require '[datalog-rules.api :as dr])
+
+(def my-ruleset (dr/ruleset {}))
+
+;; registering rules
+(dr/unirule my-ruleset
+  "Matches iff `?person` lives in `?country`"
+  '[(in-country ?person ?country)
+    [?person :person/address ?a]
+    [?a :address/town ?t]
+    [?t :town/country ?country]])
+    
+(dr/plurirule my-ruleset 
+  "Matches iff ?person said 'hello' in her native language"
+  '(said-hello ?person))
+(dr/pluriimpl my-ruleset :english-hi
+  '[(said-hello ?person)
+    [?person :speaks :english]
+    [?person :said "hi"]])
+(dr/pluriimpl my-ruleset :french-hi
+  '[(said-hello ?person)
+    [?person :speaks :french]
+    [?person :said "salut"]])
+
+;; retrieving the rules, for use in query.
+(dr/rules my-ruleset)
+=> [[(in-country ?person ?country)
+     [?person :person/address ?a]
+     [?a :address/town ?t]
+     [?t :town/country ?country]]
+    [(said-hello ?person)
+     [?person :speaks :english]
+     [?person :said "hi"]]
+    [(said-hello ?person)
+     [?person :speaks :french]
+     [?person :said "salut"]]]
+```
+
 ### Declaring a ruleset
 
 First, you need to declare a *ruleset*, 
@@ -39,7 +82,7 @@ First, you need to declare a *ruleset*,
 ```clojure
 (require '[datalog-rules.api :as dr])
 
-;; creating a ruleset with default options
+;; creating a ruleset (with default options)
 (def my-ruleset (dr/ruleset {}))
 ```
 
