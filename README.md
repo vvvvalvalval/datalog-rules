@@ -189,7 +189,7 @@ For instance, the `(in-country ?person ?country)` rule we wrote above is fast if
 If that's an issue, one solution is to define 2 rules with different clauses order in their body,
  and choose which one to use depending on the query:
 
-```
+```clojure
 (dr/unirule my-ruleset
   "Matches iff `?person` lives in `?country`. Binds ?person first."
   '[(in-country ?person ?country)
@@ -207,7 +207,7 @@ If that's an issue, one solution is to define 2 rules with different clauses ord
 Of course, the issue is that you're duplicating code when doing this.
  Instead, you can use the `:auto-reverse` option of `(datalog-rules.api/ruleset)`:
 
-```
+```clojure
 (def my-ruleset (dr/ruleset {:auto-reverse true}))
 
 (dr/unirule my-ruleset
